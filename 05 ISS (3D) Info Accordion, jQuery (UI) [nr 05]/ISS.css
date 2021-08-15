@@ -1,0 +1,365 @@
+div#infoISS {
+  background-color: lightcyan;
+  margin: 0 10px 10px 10px;
+  z-index: 0 !important;
+  position: relative;
+}
+
+div#infoISS h1 {
+  text-align: center;
+  font-style: italic;
+  font-weight: 900;
+  color: maroon;
+  padding-top: 10px;
+  letter-spacing: 2px;
+}
+
+div#infoISS div#mapDiv {
+  width: 100%;
+  height: 700px;
+  -webkit-box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+          box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  position: relative;
+  margin: 2px;
+}
+
+div#infoISS div#mapDiv h2 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+div#infoISS div#mapDiv div#infoAboutISS {
+  background-color: royalblue;
+  opacity: 0.6;
+  padding: 10px;
+  color: yellow;
+  width: auto;
+  -webkit-box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+          box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 998 !important;
+}
+
+div#infoISS div#mapDiv div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div#infoISS div#mapDiv div span {
+  font-size: 1rem;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+div#infoISS div#mapDiv div span.currentRadius {
+  margin-bottom: 0;
+}
+
+.popupISS .leaflet-popup-content-wrapper {
+  background-color: lightcyan;
+}
+
+.canvasjs-chart-tooltip {
+  bottom: auto !important;
+}
+
+.chart {
+  width: 95%;
+  margin: 5px auto;
+}
+
+.chart div.chartDiv {
+  font-family: "Open Sans", sans-serif;
+  font-size: larger;
+  padding: 10px;
+  background-color: lightyellow;
+  text-align: center;
+}
+
+.chart div.chartDiv span.avgAlt {
+  font-weight: bold;
+  color: blue;
+}
+
+div.table {
+  width: 60%;
+  margin: 5px auto;
+  font-size: large;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: whitesmoke;
+}
+
+div.table table {
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
+}
+
+div.table table thead {
+  font-weight: 900;
+  font-size: 110%;
+  background-color: dodgerblue;
+  color: whitesmoke;
+}
+
+div.table table thead th {
+  padding: 14px 0 7px;
+}
+
+div.table table thead th:first-child {
+  color: yellow;
+}
+
+div.table tbody tr {
+  background-color: #f6f6f6;
+}
+
+div.table tbody tr td {
+  padding: 10px 4px;
+}
+
+div.table tbody tr:nth-of-type(odd) {
+  background-color: #e9e9e9;
+}
+
+div.table tbody tr:last-child {
+  color: blueviolet;
+  font-style: italic;
+}
+
+div.predictPassISS {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div.predictPassISS div.infoPosition {
+  margin-right: 10px;
+}
+
+div.predictPassISS div.infoPosition h2 {
+  margin-bottom: 8px;
+  text-decoration: underline;
+}
+
+div.predictPassISS div.infoPosition p {
+  margin: 2px;
+}
+
+div.predictPassISS div.infoPosition p span {
+  font-weight: bolder;
+  font-style: italic;
+}
+
+div.predictPassISS div#map2 {
+  width: 450px;
+  height: 450px;
+}
+
+div.predictPassISS div#ISS_passes {
+  margin-left: 10px;
+}
+
+div.predictPassISS div#ISS_passes table {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: whitesmoke;
+  border: 1px solid black;
+  text-align: center;
+  margin: 5px auto;
+}
+
+div.predictPassISS div#ISS_passes table thead {
+  background-color: purple;
+  color: whitesmoke;
+}
+
+div.predictPassISS div#ISS_passes table thead th {
+  padding: 10px 0 5px;
+}
+
+div.predictPassISS div#ISS_passes table thead th:first-child {
+  background-color: #4caf50;
+}
+
+div.predictPassISS div#ISS_passes table tbody tr {
+  background-color: #f6f6f6;
+}
+
+div.predictPassISS div#ISS_passes table tbody tr td {
+  padding: 8px 3px;
+}
+
+div.predictPassISS div#ISS_passes table tbody tr:nth-of-type(odd) {
+  background-color: #e9e9e9;
+}
+
+div.predictPassISS div#ISS_passes h2#noPasses {
+  color: red;
+  background-color: grey;
+  text-align: center;
+  font-weight: bolder;
+  padding: 10px;
+  margin-top: 2px;
+}
+
+div.predictPassISS button#LoadData {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: whitesmoke;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  border: 2px solid #4caf50;
+}
+
+div.predictPassISS button#LoadData:hover, div.predictPassISS button#LoadData:active {
+  background-color: whitesmoke;
+  color: #4caf50;
+  -webkit-box-shadow: 0 5px #666;
+          box-shadow: 0 5px #666;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+div.predictPassISS button#LoadData:disabled {
+  -webkit-box-shadow: 0 5px #666;
+          box-shadow: 0 5px #666;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+div.ISS_TLE {
+  background-color: inherit;
+}
+
+div.ISS_TLE p {
+  color: maroon;
+  margin-left: 20px;
+}
+
+div.ISS_TLE p a {
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+div.ISS_TLE p span {
+  font-weight: 900;
+  font-style: italic;
+  color: black;
+}
+
+div.ISS3D {
+  background-color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.ISS3D div.astroInfo {
+  background-color: inherit;
+  float: left;
+  margin: 10px 10px 10px 30px;
+}
+
+div.ISS3D div.astroInfo h3 {
+  font-size: 110%;
+  color: green;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+div.ISS3D div.astroInfo p {
+  color: maroon;
+}
+
+div.ISS3D div.astroInfo p span {
+  font-weight: bolder;
+  color: blue;
+}
+
+div.ISS3D div.model3D {
+  margin: 10px;
+  float: right;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+div.ISS3D div.model3D h1,
+div.ISS3D div.model3D h3 {
+  text-align: center;
+  font-style: italic;
+  font-weight: 900;
+  color: maroon;
+  letter-spacing: 2px;
+  margin-top: 0;
+  padding-top: 15px;
+  margin-bottom: 5px;
+}
+
+div.ISS3D div.model3D h3 {
+  padding-top: 0px;
+}
+
+div.ISS3D div.model3D div#cesiumContainer {
+  overflow: hidden;
+  margin: 2px;
+  padding: 0px;
+  height: auto;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.ISS3D div.model3D .cesium-viewer-toolbar,
+div.ISS3D div.model3D .cesium-viewer-animationContainer,
+div.ISS3D div.model3D .cesium-viewer-timelineContainer,
+div.ISS3D div.model3D .cesium-button {
+  display: none;
+}
+
+div.ISS3D div.model3D .cesium-viewer-bottom {
+  left: 10px !important;
+}
+/*# sourceMappingURL=ISS.css.map */

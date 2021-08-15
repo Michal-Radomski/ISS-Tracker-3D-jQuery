@@ -1,0 +1,638 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: initial;
+}
+
+h2.pageTittle {
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0 !important;
+  margin-bottom: 15px !important;
+}
+
+/* Style for accordion */
+div button.btn-group {
+  border: none;
+  color: yellow;
+  padding: 18px;
+  text-align: left;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  width: 50%;
+  margin-bottom: 1px;
+  font-weight: bold;
+}
+
+button#buttonShow {
+  background-color: #4caf50;
+}
+
+button#buttonShow:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+
+button#buttonShow:before {
+  font-family: FontAwesome;
+  content: "\f055";
+  float: right;
+  font-size: 20px;
+}
+
+button#buttonHide {
+  background-color: DodgerBlue;
+}
+
+button#buttonHide:hover {
+  background-color: RoyalBlue;
+  color: white;
+}
+
+button#buttonHide:before {
+  font-family: FontAwesome;
+  content: "\f056";
+  float: right;
+  font-size: 20px;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+}
+
+.collapsible:after {
+  content: "\f0fe";
+  font-family: FontAwesome;
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.infoActive,
+.collapsible:hover {
+  background-color: #555;
+  color: yellow;
+}
+
+.infoActive,
+.infoActive:after {
+  content: "\f146";
+  font-family: FontAwesome;
+  font-size: 16px;
+  color: lime;
+}
+
+div div.infoContent {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #eee;
+  font-size: 16px;
+  height: auto;
+}
+
+div div.bigButton {
+  color: #010044;
+  padding: 10px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+  position: fixed;
+  bottom: 1px;
+  right: 0px;
+  left: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-text-decoration: underline dotted violet 4px;
+          text-decoration: underline dotted violet 4px;
+  z-index: 997;
+}
+
+div div.bigButton:hover {
+  color: #cf1140;
+  -webkit-filter: brightness(110%);
+          filter: brightness(110%);
+  -webkit-text-decoration: underline dotted darkviolet 4px;
+          text-decoration: underline dotted darkviolet 4px;
+}
+
+.bigButton .tooltiptext {
+  visibility: hidden;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  /* Position the tooltip */
+  z-index: 999;
+  left: 56%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.bigButton:hover .tooltiptext {
+  visibility: visible;
+}
+
+div.overlay {
+  height: 0%;
+  position: fixed;
+  z-index: 1000;
+  bottom: 45px;
+  right: 0px;
+  left: 0px;
+  border: solid 1px #c3c3c3;
+  background-color: rgba(229, 238, 204, 0.92);
+  color: #010044;
+  overflow-y: hidden;
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+
+div.overlay:hover {
+  -webkit-filter: brightness(110%);
+          filter: brightness(110%);
+}
+
+div.overlay div.overlay-content {
+  position: relative;
+  font-size: 16px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+div.overlay div.overlay-content:hover {
+  color: #cf1140;
+}
+
+div button#btnClose {
+  background-color: #f44336;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  position: relative;
+  margin: 30px;
+}
+
+div button#btnClose:hover {
+  -webkit-animation: shake 0.5s;
+          animation: shake 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background-color: #cccccc;
+}
+
+div button#btnClose:hover div#infoClose {
+  color: black;
+  background-color: orchid;
+}
+
+div button#btnClose div#infoClose {
+  background-color: darkviolet;
+  color: whitesmoke;
+}
+
+div button#btnClose .hide {
+  display: none;
+}
+
+div button#btnClose div#infoClose2 {
+  background-color: darkviolet;
+  color: whitesmoke;
+}
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.active {
+  -webkit-animation-name: shakeClose;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 14;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: shakeClose;
+  animation-duration: 0.5s;
+  animation-iteration-count: 14;
+  animation-fill-mode: forwards;
+  -moz-animation-name: shakeClose;
+  -moz-animation-duration: 0.5s;
+  -moz-animation-iteration-count: 14;
+  -moz-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes shakeClose {
+  0% {
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes shakeClose {
+  0% {
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+div div#progressDiv {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  width: 40%;
+  height: 215px;
+  padding: 20px;
+  text-align: center;
+  background-color: #999;
+  border: dotted darkviolet 3px;
+  display: none;
+}
+
+div div#progressDiv p#title:not(span#emoji) {
+  display: none;
+  font-size: 22px;
+  font-weight: bold;
+  background: -webkit-gradient(linear, left top, left bottom, from(red), color-stop(orange), color-stop(yellow), color-stop(green), color-stop(blue), color-stop(indigo), to(violet));
+  background: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+div div#progressDiv p#title:not(span#emoji) span#emoji {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: initial;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+div div#progressDiv progress#progressBar {
+  border: none;
+  width: 100%;
+  background-color: whitesmoke;
+  height: 30px;
+  border-radius: 9px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  -webkit-appearance: none;
+}
+
+div div#progressDiv progress#progressBar::-webkit-progress-bar {
+  border: none;
+  border-radius: 9px;
+  background-color: whitesmoke;
+}
+
+div div#progressDiv progress#progressBar::-webkit-progress-value {
+  border: none;
+  border-radius: 9px;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(red), color-stop(orange), color-stop(yellow), color-stop(green), color-stop(blue), color-stop(indigo), to(violet));
+  background-image: linear-gradient(to top right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+div div#progressDiv progress#progressBar::-moz-progress-bar {
+  border: none;
+  border-radius: 9px;
+  background-image: linear-gradient(to top right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+.ui-dialog {
+  z-index: 1000 !important;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  background-color: lightgreen;
+}
+
+.ui-dialog .ui-dialog-title {
+  font-style: italic;
+}
+
+.ui-dialog .ui-dialog-content {
+  border: 1px;
+  color: maroon;
+  background-color: wheat;
+}
+
+.ui-dialog .ui-dialog-content a {
+  color: mediumblue;
+  font-style: italic;
+}
+
+.ui-dialog .ui-dialog-content a:hover {
+  color: darkmagenta;
+  text-decoration: unset;
+}
+
+.ui-dialog .ui-dialog-content a:hover:active {
+  color: red;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  background-color: #eee;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+  background: lightblue;
+  border: 1px solid blue;
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.ui-dialog .ui-dialog-buttonpane button:hover {
+  background-color: lightgreen;
+  border: 1px solid green;
+}
+
+.ui-dialog .ui-dialog-buttonpane button:active {
+  background-color: lightsalmon;
+  border: 1px solid red;
+}
+
+.ui-button {
+  background-color: whitesmoke;
+  font-style: italic;
+  border: 1px solid #555;
+  border-radius: 6px;
+}
+
+.ui-button:hover {
+  background-color: #ddd;
+  border: 1px solid #999;
+}
+
+.ui-button:active {
+  background-color: dodgerblue;
+  border: 1px solid darkblue;
+}
+
+div#curtain2 {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  background-color: rgba(105, 195, 255, 0.9);
+  overflow-x: hidden;
+  -webkit-transition: 2.4s;
+  transition: 2.4s;
+  -webkit-transition-delay: 0.3;
+          transition-delay: 0.3;
+  -webkit-transition-timing-function: cubic-bezier(0.06, 0.78, 1, 0.32);
+          transition-timing-function: cubic-bezier(0.06, 0.78, 1, 0.32);
+}
+
+div#curtain2 div#curtain2content {
+  position: relative;
+  top: 16%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+div#curtain2 a.curtain2close {
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  position: absolute;
+  top: 25px;
+  left: 45px;
+  font-size: 60px;
+}
+
+div#curtain2 a.curtain2close:hover, div#curtain2 a.curtain2close:focus {
+  color: #f1f1f1;
+}
+
+div#curtain2 p,
+div#curtain2 h2 {
+  color: #333;
+}
+
+.ui-button {
+  background-color: inherit;
+  color: inherit;
+}
+
+.ui-button:hover {
+  background-color: wheat;
+  color: inherit;
+}
+
+.ui-button:active {
+  background-color: dodgerblue;
+  color: whitesmoke;
+}
+
+.ui-tooltip {
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: lightgoldenrodyellow;
+  color: darkgreen;
+  opacity: 0.85;
+  -webkit-box-shadow: 0 0 7px black;
+          box-shadow: 0 0 7px black;
+  font-weight: bold;
+  z-index: 1000;
+}
+/*# sourceMappingURL=style.css.map */

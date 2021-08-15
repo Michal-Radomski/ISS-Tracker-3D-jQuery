@@ -1,0 +1,298 @@
+div#infoISS {
+  background-color: lightcyan;
+  margin: 0 10px 10px 10px;
+  z-index: 0 !important;
+  position: relative;
+  h1 {
+    text-align: center;
+    font-style: italic;
+    font-weight: 900;
+    color: maroon;
+    padding-top: 10px;
+    letter-spacing: 2px;
+  }
+  div#mapDiv {
+    width: 100%;
+    height: 700px;
+    box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+    position: relative;
+    margin: 2px;
+    h2 {
+      text-align: left;
+      margin-bottom: 10px;
+      font-weight: bold;
+      margin-top: 0;
+    }
+    div#infoAboutISS {
+      background-color: royalblue;
+      opacity: 0.6;
+      padding: 10px;
+      color: yellow;
+      width: auto;
+      box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 998 !important;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 1rem;
+        margin-top: 2px;
+        margin-bottom: 10px;
+      }
+      span.currentRadius {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Style for popup of 10deg over horizon ISS visibility
+.popupISS {
+  .leaflet-popup-content-wrapper {
+    background-color: lightcyan;
+  }
+}
+
+// Styling CanvasJS Tooltip
+.canvasjs-chart-tooltip {
+  bottom: auto !important;
+}
+
+// Styling CanvasJS Chart
+.chart {
+  width: 95%;
+  margin: 5px auto;
+  div.chartDiv {
+    font-family: "Open Sans", sans-serif;
+    font-size: larger;
+    padding: 10px;
+    background-color: lightyellow;
+    text-align: center;
+    span.avgAlt {
+      font-weight: bold;
+      color: blue;
+    }
+  }
+}
+
+// Styling the dynamic table
+div.table {
+  width: 60%;
+  margin: 5px auto;
+  font-size: large;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: whitesmoke;
+  table {
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+    thead {
+      font-weight: 900;
+      font-size: 110%;
+      background-color: dodgerblue;
+      color: whitesmoke;
+      th {
+        padding: 14px 0 7px;
+      }
+      th:first-child {
+        color: yellow;
+      }
+    }
+  }
+  tbody {
+    tr {
+      background-color: #f6f6f6;
+      td {
+        padding: 10px 4px;
+      }
+    }
+    tr:nth-of-type(odd) {
+      background-color: #e9e9e9;
+    }
+    tr:last-child {
+      color: blueviolet;
+      font-style: italic;
+    }
+  }
+}
+
+// Styling the Map2
+div.predictPassISS {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px;
+  justify-content: center;
+  div.infoPosition {
+    margin-right: 10px;
+    h2 {
+      margin-bottom: 8px;
+      text-decoration: underline;
+    }
+    p {
+      margin: 2px;
+      span {
+        font-weight: bolder;
+        font-style: italic;
+      }
+    }
+  }
+  div#map2 {
+    width: 450px;
+    height: 450px;
+  }
+  div#ISS_passes {
+    margin-left: 10px;
+    table {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      background-color: whitesmoke;
+      border: 1px solid black;
+      text-align: center;
+      margin: 5px auto;
+      thead {
+        background-color: purple;
+        color: whitesmoke;
+        th {
+          padding: 10px 0 5px;
+        }
+        th:first-child {
+          background-color: #4caf50;
+        }
+      }
+      tbody {
+        tr {
+          background-color: #f6f6f6;
+          td {
+            padding: 8px 3px;
+          }
+        }
+        tr:nth-of-type(odd) {
+          background-color: #e9e9e9;
+        }
+      }
+    }
+    h2#noPasses {
+      color: red;
+      background-color: grey;
+      text-align: center;
+      font-weight: bolder;
+      padding: 10px;
+      margin-top: 2px;
+    }
+  }
+  button#LoadData {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 9px #999;
+    border: 2px solid #4caf50;
+    &:hover,
+    &:active {
+      background-color: whitesmoke;
+      color: #4caf50;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    // .disabled class for the button#LoadData
+    &:disabled {
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Styling div.ISS_TLE - fourth div.infoContent
+div.ISS_TLE {
+  background-color: inherit;
+  p {
+    color: maroon;
+    margin-left: 20px;
+    a {
+      text-decoration: none;
+      font-weight: bolder;
+    }
+    span {
+      font-weight: 900;
+      font-style: italic;
+      color: black;
+    }
+  }
+}
+
+// Styling Div.ISS3D
+div.ISS3D {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  div.astroInfo {
+    background-color: inherit;
+    float: left;
+    margin: 10px 10px 10px 30px;
+    h3 {
+      font-size: 110%;
+      color: green;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    p {
+      color: maroon;
+      span {
+        font-weight: bolder;
+        color: blue;
+      }
+    }
+  }
+  div.model3D {
+    margin: 10px;
+    float: right;
+    flex: 1;
+    h1,
+    h3 {
+      text-align: center;
+      font-style: italic;
+      font-weight: 900;
+      color: maroon;
+      letter-spacing: 2px;
+      margin-top: 0;
+      padding-top: 15px;
+      margin-bottom: 5px;
+    }
+    h3 {
+      padding-top: 0px;
+    }
+    div#cesiumContainer {
+      overflow: hidden;
+      margin: 2px;
+      padding: 0px;
+      height: auto;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cesium-viewer-toolbar,
+    .cesium-viewer-animationContainer,
+    .cesium-viewer-timelineContainer,
+    .cesium-button {
+      display: none;
+    }
+    .cesium-viewer-bottom {
+      left: 10px !important;
+    }
+  }
+}

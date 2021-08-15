@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="third JS app" />
+    <meta name="keywords" content="Info" />
+    <meta name="author" content="MichRad" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
+    <title>ISS Info Accordion + 3D Tracker</title>
+    <!-- CDN.JS for ISS - Leaflet JS and CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+    <!-- Leaflet.Terminator script -->
+    <script src=" https://unpkg.com/@joergdietrich/leaflet.terminator@1.0.0/L.Terminator.js"></script>
+    <!-- CanvasJS for dynamic charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
+    <!-- CesiumJS for rendering 3D model of the Earth -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.83/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.83/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+    <!-- Other external JS and CSS files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <!-- Script and CSS written by me -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="./Media/favicon.png" />
+    <script src="script.js" defer></script>
+    <!-- Adding JS module and other CSS files -->
+    <script src="./ISS.js" type="module" defer></script>
+    <link rel="stylesheet" href="./ISS.css" />
+  </head>
+  <body>
+    <!-- Credits, modal, Info -->
+    <button id="creditsButton" class="ui-button ui-widget ui-corner-all" title="Info & Credits">
+      <b>Info & Credits</b>
+    </button>
+    <div id="dialog" title="Info & Credits">
+      <h3>General Info</h3>
+      <p>Hula hoop photo was taken from <a href="https://www.freepik.com" target="_blank">Freepik.com</a>.</p>
+      <p><a href="https://jqueryui.com/" target="_blank">jQuery (UI)</a> was used to build the app.</p>
+      <hr />
+      <h3>ISS tracking</h3>
+      <p>The ISS information was taken from <a href="https://wheretheiss.at" target="_blank">Where the ISS at?</a></p>
+      <p>
+        ISS statistics were taken from <a href="https://www.nasa.gov/" target="_blank">NASA</a> and
+        <a href="https://en.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia</a>.
+      </p>
+      <p>The map is provided by <a href="https://www.openstreetmap.org" target="_blank">Open Street Map</a>.</p>
+      <p><a href="https://leafletjs.com" target="_blank">Leaflet</a> is used to render the map.</p>
+      <p>
+        The transparent ISS and the Sun icons were taken from <a href="https://www.pngwing.com" target="_blank">PNGWing</a>.
+      </p>
+      <p>
+        Leaflet.Terminator plug-in was taken from
+        <a href="https://github.com/joergdietrich/Leaflet.Terminator" target="_blank"
+          >https://github.com/joergdietrich/Leaflet.Terminator</a
+        >.
+      </p>
+      <p>
+        <a href="https://canvasjs.com/" target="_blank">CanvasJS v1.7</a> was used to render dynamic chart of current ISS
+        altitude.
+      </p>
+      <p>IP Geolocation is powered by <a href="https://ipwhois.io/" target="_blank">IPWHOIS.IO</a>.</p>
+      <p>Public satellite pass API is powered by <a href="https://g7vrd.co.uk/" target="_blank">G7VRD[/M]</a>.</p>
+      <p>
+        Solar and lunar data are taken from
+        <a href="https://api.met.no/weatherapi/" target="_blank">Norwegian Meteorological Institute</a>.
+      </p>
+    </div>
+    <!-- Building the Curtain2 -->
+    <button id="buttonCurtain2" class="ui-button ui-widget ui-corner-all" title="Show ISS stats" onclick="openCurtain2()">
+      <b>Show ISS stats</b>
+    </button>
+    <div id="curtain2">
+      <a href="javascript:void(0)" class="curtain2close" onclick="closeCurtain2()">&times;</a>
+      <div id="curtain2content">
+        <h2>Don't worry, it's just a strange sound 😃</h2>
+        <br />
+        <h2 style="text-decoration: underline">Station stats:</h2>
+        <p>Weight: 419,725 kg;</p>
+        <p>Dimensions: 73.0m x 109.0m;</p>
+        <p>Atmospheric pressure: 101.3 kPa (1.0 atm) -> 79% nitrogen, 21% oxygen;</p>
+        <p>Orbital decay: 2 km / month;</p>
+        <p>Crew: 7 people.</p>
+        <br />
+        <p>The ISS was launched 22 years ago (November 20, 1998).</p>
+        <p>In 24 hours, the space station makes 16 orbits of the Earth (~ 92 minutes / orbit).</p>
+        <p>A space station travels an equivalent distance to the moon and back in about a day.</p>
+        <p>The cost of the ISS was estimated at over $ 120 billion.</p>
+      </div>
+    </div>
+    <audio id="doorCreak">
+      <source src="Media/doorCreak.mp3" type="audio/mpeg" />
+      <p>Your user agent does not support the HTML5 Audio element</p>
+    </audio>
+    <!-- Building the ISS map + info -->
+    <div id="infoISS">
+      <h1>Live ISS Tracker (3D)</h1>
+      <div id="mapDiv">
+        <div id="infoAboutISS">
+          <h2>ISS Info updated every second</h2>
+          <div>Current Unix Time: <span class="unixTime"></span></div>
+          <div>Current GMT Time: <span class="time"></span></div>
+          <div>Current Local Time: <span class="localTime"></span></div>
+          <div>Latitude: <span class="latitude"></span></div>
+          <div>Longitude: <span class="longitude"></span></div>
+          <div>Orbital Speed: <span class="speed"></span></div>
+          <div>Altitude: <span class="altitude"></span></div>
+          <div>Visibility: <span class="visibility"></span></div>
+          <div>Current position of the Sun: <span class="sunPosition"></span></div>
+          <div>Current radius of ISS visibility 20° over horizon: <span class="currentRadius20deg"></span></div>
+          <div>Current horizon radius of ISS visibility (tangent to the Earth): <span class="currentRadius"></span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Building the accordion -->
+    <h2 class="pageTittle">Some useful information about ISS:</h2>
+    <div>
+      <button class="btn-group" id="buttonShow">Show All</button>
+      <button class="btn-group" id="buttonHide">Hide All</button>
+    </div>
+    <div id="accordion">
+      <button class="collapsible">Dynamic chart of current ISS altitude</button>
+      <div class="infoContent">
+        <div class="chart">
+          <div class="chartDiv">Average ISS altitude calculated over the last 5 seconds: <span class="avgAlt"></span></div>
+          <div id="chartDynamicAltitude" style="height: 400px; width: 100%"></div>
+        </div>
+      </div>
+      <button class="collapsible">Dynamic table of ISS values</button>
+      <div class="infoContent">
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="5">Dynamic table of ISS values (last 5 readings)</th>
+              </tr>
+              <tr>
+                <th>GMT Time:</th>
+                <th>Orbital Velocity [km/h]:</th>
+                <th>Altitude [km]:</th>
+                <th>Latitude [°]:</th>
+                <th>Longitude [°]:</th>
+              </tr>
+            </thead>
+            <tbody id="dynamicTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <button class="collapsible">
+        ISS passes in the next 72 hours at your location (min elevation: 20° above the horizon)
+      </button>
+      <div class="infoContent">
+        <div class="predictPassISS">
+          <div class="infoPosition">
+            <button id="LoadData" title="Load ISS passes, current weather and location">Load ISS visible passes</button>
+            <h2><mark style="background-color: lightyellow">IP Geolocation Info</mark></h2>
+            <p class="ipHome">IP: <span style="background-color: lightyellow"></span></p>
+            <p class="countryHome">Country: <span></span></p>
+            <p class="regionHome">Region: <span></span></p>
+            <p class="cityHome">City: <span></span></p>
+            <p class="latitudeHome">Latitude: <span style="background-color: lightyellow"></span></p>
+            <p class="longitudeHome">Longitude: <span style="background-color: lightyellow"></span></p>
+            <p class="timezoneHome">Timezone: <span></span></p>
+            <p class="timezoneNameHome">Timezone name: <span></span></p>
+            <h2><mark style="background-color: lightyellow">Current weather at your location</mark></h2>
+            <p>General description: <span class="description"></span> and cloudiness: <span class="cloudiness"></span>.</p>
+            <p>
+              Current temp: <span class="currentTemp"></span>, max temp: <span class="tempMax"></span>, min temp:
+              <span class="tempMin"></span>.
+            </p>
+            <p>
+              Pressure: <span class="pressure"></span>, humidity: <span class="humidity"></span>, visibility:
+              <span class="visibilityKm"></span>.
+            </p>
+            <p>Speed of wind: <span class="windSpeed"></span>, direction: <span class="direction"></span>.</p>
+            <p style="margin-bottom: 10px">Sunrise: <span class="sunrise"></span>, sunset: <span class="sunset"></span>.</p>
+          </div>
+          <div id="map2"></div>
+          <div id="ISS_passes">
+            <p style="font-weight: bolder; margin-bottom: 10px; font-size: 110%">
+              Hover over<span style="color: purple"> purple </span>color below<span style="color: purple"> &dArr; </span>to
+              see a tip.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="7" style="font-weight: bolder; font-size: 140%; color: yellow">
+                    Visible ISS passes in the next 72 hours (min elevation: 20° above the horizon)
+                  </th>
+                </tr>
+                <tr id="trISS_passes">
+                  <th>No.</th>
+                  <th id="startTime" title="Pass start time">Start (local time)</th>
+                  <th id="tooltipTCA" title="Time of Closest Approach">TCA (local time)</th>
+                  <th id="endTime" title="Pass end time">End (local time)</th>
+                  <th
+                    id="aosAzimuth"
+                    title="Acquisition of Signal Azimuth: direction that ISS rises above the horizon of an observer"
+                  >
+                    AOS Azimuth [°]
+                  </th>
+                  <th id="losAzimuth" title="Loss of Signal Azimuth: direction that ISS passes below the observer’s horizon">
+                    LOS Azimuth [°]
+                  </th>
+                  <th id="maxElevation" title="Max elevation over the horizon">Max Elevation [°]</th>
+                </tr>
+              </thead>
+              <tbody id="tableISS_passes"></tbody>
+            </table>
+            <h2 id="noPasses"></h2>
+          </div>
+        </div>
+      </div>
+      <button class="collapsible">TLE of ISS</button>
+      <div class="infoContent">
+        <div class="ISS_TLE">
+          <p>Satellite ID: <span id="satelliteID"></span>, name: <span id="satelliteName"></span>.</p>
+          <p>
+            Time of <a href="https://en.wikipedia.org/wiki/Two-line_element_set" target="_blank">TLE</a> :
+            <span id="satelliteDate"></span>.
+          </p>
+          <p>Line 1: <span id="line1"></span>,</p>
+          <p>Line 2: <span id="line2"></span>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ISS3D">
+      <div class="astroInfo">
+        <h3>Solar and lunar information is provided in the local time zone</h3>
+        <p class="moonriseTimeText">Moonrise time: <span></span></p>
+        <p class="moonsetTimeText">Moonset time: <span></span></p>
+        <p class="moonHighElevationText">The max elevation of the Moon: <span></span></p>
+        <p class="moonHighTimeText">The hour of maximum moon elevation: <span></span></p>
+        <p class="sunRiseTimeText">Sunrise time: <span></span></p>
+        <p class="sunSetTimeText">Sunset time: <span></span></p>
+        <p class="solarNoonTimeText">Time of the local solar noon (180°S): <span></span></p>
+        <p class="solarNoonElevationText">The altitude of the sun during the local solar noon: <span></span></p>
+        <p class="solarMidnightTimeText">Time of the local solar midnight (0°N): <span></span></p>
+        <p class="solarMidnightElevationText">The altitude of the sun during the local solar midnight: <span></span></p>
+      </div>
+      <div class="model3D">
+        <h1>Live 3D ISS Tracker</h1>
+        <h3>Default view from 15,000 km above the Earth</h3>
+        <div id="cesiumContainer"></div>
+      </div>
+    </div>
+    <br /><br />
+    <!-- Footer -->
+    <div class="footer">
+      <div class="bigButton" onclick="infoChange(); playHorse()">
+        About your computer!<span class="tooltiptext">/Information collected by the browser /</span>
+      </div>
+      <audio id="horseAudio">
+        <source src="Media/HorseNeighing.mp3" type="audio/mpeg" />
+        <p>Your user agent does not support the HTML5 Audio element</p>
+      </audio>
+    </div>
+    <!-- Curtain Info about PC-->
+    <div id="myInfo" class="overlay">
+      <br /><br />
+      <!-- The close button -->
+      <div class="divClose">
+        <button id="btnClose" onclick="infoClose(); closePlay(); shakeButton(); countdownTimer()">
+          <div id="infoClose" class="">Close</div>
+          <div id="infoClose2" class="hide">...bye bye...</div>
+          <br /><img src="Media/hula-hoop.jpg" width="100" />
+        </button>
+        <audio id="moveIt">
+          <source src="Media/I_like_to_move_it.mp3" type="audio/mpeg" />
+          <p>Your user agent does not support the HTML5 Audio element.</p>
+        </audio>
+      </div>
+      <!-- The progress bar + countdown timer -->
+      <div id="progressDiv">
+        <progress min="0" value="0" max="140" id="progressBar"></progress>
+        <p id="counting">Time remaining: 7 seconds</p>
+        <p id="title">I like to move it, move it<span id="emoji"> &#128512; </span></p>
+        <br />
+      </div>
+      <!-- PC, screen information -->
+      <div class="overlay-content">
+        <h3>Your browser:</h3>
+        <div id="browserInfo"></div>
+        <script>
+          let txt1 = "";
+          txt1 += "<p>Version of the browser: " + navigator.appVersion + "</p>";
+          txt1 += "<p>Languages of the browser: " + navigator.languages + "</p>";
+          txt1 += "<p>Is the browser online ?: " + navigator.onLine + "</p>";
+          txt1 += "<p>Platform the browser is compiled: " + navigator.platform + "</p>";
+          txt1 += "<p>Engine name of the browser: " + navigator.product;
+          +"</p>";
+          txt1 += "<p>Identifier of the browser: " + navigator.buildID;
+          +"</p>";
+          txt1 += "<p>User-agent header sent by the browser to the server: " + navigator.userAgent + "</p>";
+          document.getElementById("browserInfo").innerHTML = txt1;
+        </script>
+        <h3>Your display:</h3>
+        <div2 id="displayInfo"></div2>
+        <script>
+          let txt2 = "";
+          txt2 += "<p>Display resolution: " + screen.width + " x " + screen.height + " pixels" + "</p>";
+          txt2 += "<p>Color depth: " + screen.colorDepth + " bits/pixel" + "</p>";
+          document.getElementById("displayInfo").innerHTML = txt2;
+        </script>
+        <br />
+      </div>
+    </div>
+  </body>
+</html>
