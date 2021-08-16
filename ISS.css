@@ -324,6 +324,7 @@ div.ISS3D div.model3D {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  min-width: 550px;
 }
 
 div.ISS3D div.model3D h1,
