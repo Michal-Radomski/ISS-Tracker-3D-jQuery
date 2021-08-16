@@ -45,7 +45,7 @@ And more... :smiley:.
 - [LeafletJS](https://leafletjs.com/) - Rendering the 2D maps,
 - [CesiumJS](https://cesium.com/) - Rendering the 3D Earth,
 - [jQuery](https://jquery.com/) - To build the accordion,
-- [CanvasJS v1.7](https://canvasjs.com/) - To render dynamic chart,
+- [CanvasJS v1.7](https://canvasjs.com/) - To render dynamic chart.
 
 ## License
 
