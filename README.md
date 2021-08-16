@@ -1,29 +1,44 @@
-# ISS-3D-Tracker-jQuery
+# ISS Tracker (3D)
 
-ISS (3D) Tracker with Accordion.
-Leaflet, Cesium and jQuery were used to build the application.
+An application that provides a lot of information about the ISS.
 
-# Project Title
-
-Simple overview of use/purpose.
+[Link to the application.](https://test-proj-gda5.web.app/)
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+The application gets ISS data from the API: https://wheretheiss.at/. The large OSM / Leaflet map shows the current movement
+parameters (like speed, altitude, position, etc.). The positions of the ISS and sun icons are real and updated every 1s. The
+ISS visibility circles are generated on an ongoing basis: over the horizon and 20 degrees above the horizon.
 
-## Getting Started
+Below is accordion (written in jQuery).
 
-### Dependencies
+The first tab is the ISS Dynamic Height Plot - Actual Data (CanvasJS library used).
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+The second tab is the dynamic table of ISS values ​​(last 5 seconds).
 
-### Installing
+The third tab is:
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+1. Determining geolocation - https://ipwhois.io/,
+2. Showing current weather conditions - https://openweathermap.org/,
+3. Rendering the OSM map with your current position,
+4. Table showing the visible ISS transitions at a given location, at least 20 degrees above the horizon for the next 72
+   hours.
 
+The fourth tab is TLE of ISS.
 
+Below is the ISS 3D path around the Earth (CesiumJS library used) and actual data such as sunrise / sunset, moonrise /
+moonset and local solar noon taken from https://api.met.no/weatherapi/.
+
+And more... :smiley:.
+
+## Built With
+
+- [OpenStreetMap](https://www.openstreetmap.org/) - The map,
+- [LeafletJS](https://leafletjs.com/) - Rendering the 2D maps,
+- [CesiumJS](https://cesium.com/) - Rendering the 3D Earth,
+- [jQuery](https://jquery.com/) - To build the accordion,
+- [CanvasJS v1.7](https://canvasjs.com/) - To render dynamic chart,
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
