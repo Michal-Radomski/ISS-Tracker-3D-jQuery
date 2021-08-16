@@ -12,7 +12,7 @@ ISS visibility circles are generated on an ongoing basis: over the horizon and 2
 
 Below is accordion (written in jQuery).
 
-The first tab is the ISS Dynamic Height Plot - Actual Data (CanvasJS library used).
+The first tab is the ISS dynamic height plot - actual data (CanvasJS library used).
 
 The second tab is the dynamic table of ISS values ​​(last 5 seconds).
 
@@ -30,6 +30,14 @@ Below is the ISS 3D path around the Earth (CesiumJS library used) and actual dat
 moonset and local solar noon taken from https://api.met.no/weatherapi/.
 
 And more... :smiley:.
+
+## ScreenShots
+
+<img alt="ISS 2D map" src="./Readme.md_pics/ISS_2D_map.png">
+<img alt="Dynamic chart" src="./Readme.md_pics/Dynamic_Chart.png">
+<img alt="Dynamic table" src="./Readme.md_pics/Dynamic_Table.png">
+<img alt="Visible passes" src="./Readme.md_pics/Visible_Passes.png">
+<img alt="3D ISS path" src="./Readme.md_pics/3D_ISS_path.png">
 
 ## Built With
 
