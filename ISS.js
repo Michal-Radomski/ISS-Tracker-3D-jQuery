@@ -12,6 +12,9 @@ let currentRadius20degText = document.querySelector(".currentRadius20deg");
 let sunPositionText = document.querySelector(".sunPosition");
 let unixTime = document.querySelector(".unixTime");
 
+// -Adding Api Key - the config file is not hosted on the GitHub.com
+let apiKey = configApi.API_KEY;
+
 // Setting the default latitude and longitude (here for Gdansk / PL) and zoomLevel
 let lat = 54.352;
 let long = 18.6466;
@@ -609,9 +612,10 @@ function showPassesISS(positionArray) {
 }
 
 // Fetching local weather data
+// - Api Key: ${apiKey} is not hosted on GitHub.com
 function showWeather(positionArray) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${positionArray[0]}&lon=${positionArray[1]}&appid=9c0712c6ba48fef8bbec4e49e235efdb&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${positionArray[0]}&lon=${positionArray[1]}&${apiKey}&units=metric`
   )
     .then((response) => response.json())
     .then((data) => {
