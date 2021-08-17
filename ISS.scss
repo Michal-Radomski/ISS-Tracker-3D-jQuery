@@ -15,8 +15,8 @@ div#loadingScreen {
     color: whitesmoke;
     font-size: xx-large;
     font-weight: 900;
-    position: absolute;
-    top: 50vh;
+    position: absolute !important;
+    top: 50vh !important;
     left: 50%;
     transform: translate(-50%, 0);
   }
