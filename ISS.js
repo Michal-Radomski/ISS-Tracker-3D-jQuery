@@ -180,7 +180,7 @@ function calculateRadius(altitude) {
 // Calculating current radius of ISS visibility 20 degrees over horizon - using -> //* The law of sines
 function calculateRadius20degrees(altitude) {
   altitude = parseFloat(altitude);
-  let earthRadius = 6371; // * km
+  let earthRadius = 6371; // * [km]
   // Convert Degrees to Radians
   let degToRads = (deg) => (deg * Math.PI) / 180.0;
   // 110 degrees to radians (20 degrees over horizon)
@@ -747,12 +747,16 @@ function showPosition3D(currentLat, currentLong, currentCity) {
   entity3.label.show = true;
   entity3.label.text = `You are here in: ${currentCity}`;
 }
-// +Hiding ->Loading...<- screen when the Earth is rendered - delayed 1 second
+// +Hiding ->Loading...<- screen when the Earth is rendered - delayed 1 second (with jQuery UI effects)
 viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
   setTimeout(function () {
     if (viewer.scene.globe.tilesLoaded === true) {
-      // document.querySelector("#loadingScreen").classList.toggle("globeRendered", true);
-      document.querySelector("#loadingScreen").classList.add("globeRendered");
+      // document.querySelector("#loadingScreen").classList.add("globeRendered");  // - first version of hiding loadingScreen
+      // * Hiding loadingScreen with jQuery UI effects
+      $(document).ready(function () {
+        $("#loadingScreen").effect("shake", {times: 4}, 1500);
+        $("#loadingScreen").hide("size", 1500);
+      });
     }
   }, 1000);
 });
