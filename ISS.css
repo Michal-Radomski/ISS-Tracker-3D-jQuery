@@ -1,3 +1,37 @@
+div#loadingScreen {
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.85;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 991;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: opacity 0.5s, visibility 0.5s;
+  transition: opacity 0.5s, visibility 0.5s;
+  visibility: visible;
+}
+
+div#loadingScreen h1.loading {
+  color: whitesmoke;
+  font-size: xx-large;
+  font-weight: 900;
+}
+
+.globeRendered {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 div#infoISS {
   background-color: lightcyan;
   margin: 0 10px 10px 10px;
