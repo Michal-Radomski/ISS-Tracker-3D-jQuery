@@ -8,15 +8,7 @@ div#loadingScreen {
   left: 0;
   bottom: 0;
   z-index: 991;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: block;
   -webkit-transition: display 0.5s;
   transition: display 0.5s;
 }
@@ -25,6 +17,11 @@ div#loadingScreen h1.loading {
   color: whitesmoke;
   font-size: xx-large;
   font-weight: 900;
+  position: absolute;
+  top: 50vh;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .globeRendered {
