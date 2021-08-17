@@ -158,10 +158,10 @@ function getDataISS() {
       calculateRadius20degrees(altitude);
       prepareArray(altitude);
       prepareDynamicMatrix(humanDateFormatUTC, speed, altitude, lat, long);
-      // Adding a 15 seconds delay to drawISS3D function
+      // Adding a 8 seconds delay to drawISS3D function
       setTimeout(function () {
         drawISS3D(lat, long, altitude);
-      }, 15000);
+      }, 8000);
     })
     .catch((e) => console.log(e));
 }
@@ -747,6 +747,12 @@ function showPosition3D(currentLat, currentLong, currentCity) {
   entity3.label.show = true;
   entity3.label.text = `You are here in: ${currentCity}`;
 }
+// Hiding ->Loading...<- screen when the Earth is rendered
+viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
+  if (viewer.scene.globe.tilesLoaded === true) {
+    document.querySelector("#loading").classList.toggle("disappear", true);
+  }
+});
 
 // Showing Local Solar Time and the Sun/ the Moon information
 function localSolarTime(currentLat, currentLong) {
