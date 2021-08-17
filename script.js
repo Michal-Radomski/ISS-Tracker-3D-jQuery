@@ -1,3 +1,13 @@
+// Scrolling to the top on reload
+$(document).ready(function () {
+  $(this).scrollTop(0);
+});
+// Covering the whole document with loadingScreen
+let totalHeight = document.body.clientHeight;
+$(document).ready(function () {
+  $("#loadingScreen").height(totalHeight);
+});
+
 // Function accordion()
 // Open all parts of accordion
 function accordion() {

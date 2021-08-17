@@ -1,8 +1,9 @@
 div#loadingScreen {
   width: 100%;
+  height: 100%;
   background: black;
   opacity: 0.85;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -16,9 +17,8 @@ div#loadingScreen {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: opacity 0.5s, visibility 0.5s;
-  transition: opacity 0.5s, visibility 0.5s;
-  visibility: visible;
+  -webkit-transition: display 0.5s;
+  transition: display 0.5s;
 }
 
 div#loadingScreen h1.loading {
@@ -28,8 +28,7 @@ div#loadingScreen h1.loading {
 }
 
 .globeRendered {
-  opacity: 0 !important;
-  visibility: hidden !important;
+  display: none !important;
 }
 
 div#infoISS {

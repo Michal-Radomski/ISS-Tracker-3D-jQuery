@@ -751,7 +751,8 @@ function showPosition3D(currentLat, currentLong, currentCity) {
 viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
   setTimeout(function () {
     if (viewer.scene.globe.tilesLoaded === true) {
-      document.querySelector("#loadingScreen").classList.toggle("globeRendered", true);
+      // document.querySelector("#loadingScreen").classList.toggle("globeRendered", true);
+      document.querySelector("#loadingScreen").classList.add("globeRendered");
     }
   }, 1000);
 });
