@@ -1,4 +1,4 @@
-# ISS Tracker (3D)
+# Live ISS Tracker (3D) + Info Accordion
 
 An application that provides a lot of information about the ISS.
 
