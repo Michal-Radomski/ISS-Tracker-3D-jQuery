@@ -841,12 +841,13 @@ function localSolarTime(currentLat, currentLong) {
       document.querySelector(".solarMidnightTimeText > span").innerHTML = solarMidnightTime;
       document.querySelector(".solarMidnightElevationText > span").innerHTML = solarMidnightElevation + "°";
       // Changing color for undefined value
-      let x = document.querySelectorAll(".astroInfo>p>span");
-      console.log(x);
-      x.forEach((elem) => {
+      let undefinedNodeList = document.querySelectorAll(".astroInfo>p>span");
+      // console.log("undefinedNodeList:", undefinedNodeList);
+      undefinedNodeList.forEach((elem) => {
         if (elem.innerText === "undefined") {
           elem.style.color = "blueViolet";
-          console.log(elem);
+          elem.style.fontStyle = "italic";
+          // console.log("elem of undefinedNodeList:", elem);
         }
       });
     });
