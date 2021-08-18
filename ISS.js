@@ -1,3 +1,12 @@
+// -Checking if user browser is based on Chrome browser
+let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+// console.log("isChrome:", isChrome);
+if (isChrome) {
+  setTimeout(function () {
+    document.querySelector("#loadingScreen").classList.add("globeRendered");
+  }, 2500);
+}
+
 // Script for showing information about ISS
 // DOM
 let latitudeText = document.querySelector(".latitude");
