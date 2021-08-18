@@ -747,7 +747,7 @@ function showPosition3D(currentLat, currentLong, currentCity) {
   entity3.label.show = true;
   entity3.label.text = `You are here in: ${currentCity}`;
 }
-// +Hiding ->Loading...<- screen when the Earth is rendered - delayed 1 second (with jQuery UI effects)
+// +Hiding ->Loading...<- screen when the Earth 3D is rendered - delayed 0.5 second (with jQuery UI effects)
 viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
   setTimeout(function () {
     if (viewer.scene.globe.tilesLoaded === true) {
@@ -758,7 +758,7 @@ viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
         $("#loadingScreen").hide("size", 1500);
       });
     }
-  }, 1000);
+  }, 500);
 });
 
 // Showing Local Solar Time and the Sun/ the Moon information
@@ -794,22 +794,41 @@ function localSolarTime(currentLat, currentLong) {
     .then((response) => response.json())
     .then((data) => {
       // console.log("solar, lunar data:", data);
-      let moonriseTime = new Date(data.location.time[0].moonrise.time).toLocaleString();
-
+      // Checking if any element of data === undefined
+      let moonriseTime = undefined;
+      if (data.location.time[0].moonrise !== undefined) {
+        moonriseTime = new Date(data.location.time[0].moonrise.time).toLocaleString();
+      }
       let moonsetTime = undefined;
-
       if (data.location.time[0].moonset !== undefined) {
         moonsetTime = new Date(data.location.time[0].moonset.time).toLocaleString();
       }
-
-      let moonHighElevation = parseFloat(data.location.time[0].high_moon.elevation).toFixed(2);
-      let moonHighTime = new Date(data.location.time[0].high_moon.time).toLocaleString();
-      let sunRiseTime = new Date(data.location.time[0].sunrise.time).toLocaleString();
-      let sunSetTime = new Date(data.location.time[0].sunset.time).toLocaleString();
-      let solarNoonTime = new Date(data.location.time[0].solarnoon.time).toLocaleString();
-      let solarNoonElevation = parseFloat(data.location.time[0].solarnoon.elevation).toFixed(2);
-      let solarMidnightTime = new Date(data.location.time[0].solarmidnight.time).toLocaleString();
-      let solarMidnightElevation = parseFloat(data.location.time[0].solarmidnight.elevation).toFixed(2);
+      let moonHighElevation = undefined;
+      let moonHighTime = undefined;
+      if (data.location.time[0].high_moon !== undefined) {
+        moonHighElevation = parseFloat(data.location.time[0].high_moon.elevation).toFixed(2);
+        moonHighTime = new Date(data.location.time[0].high_moon.time).toLocaleString();
+      }
+      let sunRiseTime = undefined;
+      if (data.location.time[0].sunrise !== undefined) {
+        sunRiseTime = new Date(data.location.time[0].sunrise.time).toLocaleString();
+      }
+      let sunSetTime = undefined;
+      if (data.location.time[0].sunset !== undefined) {
+        sunSetTime = new Date(data.location.time[0].sunset.time).toLocaleString();
+      }
+      let solarNoonTime = undefined;
+      let solarNoonElevation = undefined;
+      if (data.location.time[0].solarnoon !== undefined) {
+        solarNoonTime = new Date(data.location.time[0].solarnoon.time).toLocaleString();
+        solarNoonElevation = parseFloat(data.location.time[0].solarnoon.elevation).toFixed(2);
+      }
+      let solarMidnightTime = undefined;
+      let solarMidnightElevation = undefined;
+      if (data.location.time[0].solarmidnight !== undefined) {
+        solarMidnightTime = new Date(data.location.time[0].solarmidnight.time).toLocaleString();
+        solarMidnightElevation = parseFloat(data.location.time[0].solarmidnight.elevation).toFixed(2);
+      }
       // DOM for displaying the Sun/ the Moon info
       document.querySelector(".moonriseTimeText > span").innerHTML = moonriseTime;
       document.querySelector(".moonsetTimeText > span").innerHTML = moonsetTime;
@@ -821,8 +840,9 @@ function localSolarTime(currentLat, currentLong) {
       document.querySelector(".solarNoonElevationText > span").innerHTML = solarNoonElevation + "°";
       document.querySelector(".solarMidnightTimeText > span").innerHTML = solarMidnightTime;
       document.querySelector(".solarMidnightElevationText > span").innerHTML = solarMidnightElevation + "°";
-
+      // Changing color for undefined value
       let x = document.querySelectorAll(".astroInfo>p>span");
+      console.log(x);
       x.forEach((elem) => {
         if (elem.innerText === "undefined") {
           elem.style.color = "blueViolet";
