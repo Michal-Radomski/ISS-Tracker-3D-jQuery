@@ -31,7 +31,7 @@ moonset and local solar noon taken from <https://api.met.no/weatherapi/>.
 
 And more... :smiley:.
 
-## Notes/ToDo List/Issues
+## Notes/ ToDo List/ Issues
 
 1. The API key for OpenWeather.com is not hosted on GitHub.com.
 2. The application works great in Firefox. Chrome does not render a 3D Globe and a dynamic table.
