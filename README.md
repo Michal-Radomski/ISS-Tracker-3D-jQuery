@@ -1,8 +1,8 @@
 # Live ISS Tracker (3D) + Info Accordion
 
-An application that provides a lot of information about the ISS.
+An application that provides a lot of live information about the ISS.
 
-[Link to the application.](https://test-proj-gda5.web.app/)
+Link to the application: [https://test-proj-gda5.web.app/](https://test-proj-gda5.web.app/)
 
 ## Description
 
