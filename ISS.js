@@ -795,7 +795,13 @@ function localSolarTime(currentLat, currentLong) {
     .then((data) => {
       // console.log("solar, lunar data:", data);
       let moonriseTime = new Date(data.location.time[0].moonrise.time).toLocaleString();
-      let moonsetTime = new Date(data.location.time[0].moonset.time).toLocaleString();
+
+      let moonsetTime = undefined;
+
+      if (data.location.time[0].moonset !== undefined) {
+        moonsetTime = new Date(data.location.time[0].moonset.time).toLocaleString();
+      }
+
       let moonHighElevation = parseFloat(data.location.time[0].high_moon.elevation).toFixed(2);
       let moonHighTime = new Date(data.location.time[0].high_moon.time).toLocaleString();
       let sunRiseTime = new Date(data.location.time[0].sunrise.time).toLocaleString();
@@ -815,5 +821,13 @@ function localSolarTime(currentLat, currentLong) {
       document.querySelector(".solarNoonElevationText > span").innerHTML = solarNoonElevation + "°";
       document.querySelector(".solarMidnightTimeText > span").innerHTML = solarMidnightTime;
       document.querySelector(".solarMidnightElevationText > span").innerHTML = solarMidnightElevation + "°";
+
+      let x = document.querySelectorAll(".astroInfo>p>span");
+      x.forEach((elem) => {
+        if (elem.innerText === "undefined") {
+          elem.style.color = "blueViolet";
+          console.log(elem);
+        }
+      });
     });
 }
