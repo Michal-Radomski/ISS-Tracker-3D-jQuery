@@ -35,6 +35,7 @@ And more... :smiley:.
 
 1. The API key for OpenWeather.com is not hosted on GitHub.com.
 2. The application works great in Firefox. Chrome does not render a 3D Globe and a dynamic table.
+3. Responsiveness is not done yet.
 
 ## ScreenShots
 
