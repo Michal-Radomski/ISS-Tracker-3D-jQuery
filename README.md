@@ -2,11 +2,11 @@
 
 An application that provides a lot of live information about the ISS.
 
-Link to the application: [https://test-proj-gda5.web.app/](https://test-proj-gda5.web.app/)
+Link to the application: [https://test-proj-gda5.web.app/](https://test-proj-gda5.web.app)
 
 ## Description
 
-The application gets ISS data from the API: <https://wheretheiss.at/>. The large OSM / Leaflet map shows the current movement
+The application gets ISS data from the API: <https://wheretheiss.at>. The large OSM / Leaflet map shows the current movement
 parameters (like speed, altitude, position, etc.). The positions of the ISS and sun icons are real and updated every 1s. The
 ISS visibility circles are generated on an ongoing basis: over the horizon and 20 degrees above the horizon.
 
